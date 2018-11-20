@@ -1,5 +1,6 @@
 ﻿  main.cpp
-e:\cpp_practice\dm_1115\dm_1115\main.cpp(28): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\cpp_practice\git_project\randomwalk\dm_1115\main.cpp(28): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   vector.cpp
   Generating Code...
-  dm_1115.vcxproj -> E:\CPP_Practice\dm_1115\Debug\dm_1115.exe
+  LINK : E:\CPP_Practice\git_project\RandomWalk\Debug\dm_1115.exe not found or not built by the last incremental link; performing full link
+  dm_1115.vcxproj -> E:\CPP_Practice\git_project\RandomWalk\Debug\dm_1115.exe

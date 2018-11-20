@@ -16,7 +16,7 @@ using std::ostream;
 namespace VECTOR {
 
 	const double Rag_to_deg = 45.0 / atan(1.0);
-
+	/*
 	void Vector::set_mag()
 	{
 		mag = sqrt(x * x + y * y);
@@ -29,6 +29,7 @@ namespace VECTOR {
 		else
 			ang = atan2(y, x);
 	}
+	
 
 	void Vector::set_x()
 	{
@@ -39,16 +40,35 @@ namespace VECTOR {
 	{
 		y = mag * sin(ang);
 	}
+	*/
+
+	double Vector::magval() const
+	{
+		double mag;
+		mag = sqrt(x * x + y * y);
+		return mag;
+	}
+
+	double Vector::angval() const
+	{
+		double ang;
+		if (x == 0 && y == 0)
+			ang = 0.0;
+		else
+			ang = atan2(y, x);
+		return ang;
+	}
 
 	Vector::Vector()
 	{
-		mag = ang = x = y = 0.0;
+		x = y = 0.0;
 		mode = RECT;
 	}
 
 	Vector::Vector(double n1, double n2, Mode form)
 	{
 		mode = form;
+		/*
 		if (form == RECT)
 		{
 			x = n1;
@@ -63,11 +83,23 @@ namespace VECTOR {
 			set_x();
 			set_y();
 		}
+		*/
+		if (form == RECT)
+		{
+			x = n1;
+			y = n2;
+		}
+		else if (form == POL)
+		{
+			//n1 is mag, n2 is ang
+			x = n1 * cos(n2);
+			y = n1 * sin(n2);
+		}
 		else
 		{
 			cout << "Incorrect 3rd argument for Vector() "
 				<< "Reset argument to default"<<endl;
-			mag = ang = x = y = 0.0;
+			x = y = 0.0;
 			mode = RECT;
 		}
 	}
@@ -79,21 +111,23 @@ namespace VECTOR {
 		{
 			x = n1;
 			y = n2;
-			set_ang();
-			set_mag();
+			//set_ang();
+			//set_mag();
 		}
 		else if (form == POL)
 		{
-			mag = n1;
-			ang = n2;
-			set_x();
-			set_y();
+			x = n1 * cos(n2);
+			y = n1 * sin(n2);
+			//mag = n1;
+			//ang = n2;
+			//set_x();
+			//set_y();
 		}
 		else
 		{
 			cout << "Incorrect 3rd argument for Vector() "
 				<< "Reset argument to default" << endl;
-			mag = ang = x = y = 0.0;
+			x = y = 0.0;
 			mode = RECT;
 		}
 	}
@@ -130,7 +164,7 @@ namespace VECTOR {
 
 	Vector::operator double() const
 	{
-		return mag;
+		return magval();
 	}
 
 	//friend function
@@ -147,7 +181,7 @@ namespace VECTOR {
 		}
 		else if (b.mode == Vector::POL)
 		{
-			co << "(m,a): (" << b.mag << "," << b.ang*Rag_to_deg <<")";
+			co << "(m,a): (" << b.magval() << "," << (b.angval())*Rag_to_deg <<")";
 		}
 		else
 			co << "The Vector's mode is wrong." << endl;

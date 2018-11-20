@@ -11,13 +11,15 @@ namespace VECTOR{
     private:
         double x;
         double y;
-        double mag;
-        double ang;
+        //double mag;
+        //double ang;
         Mode mode;
+		/*
         void set_mag();
         void set_ang();
         void set_x();
         void set_y();
+		*/
     public:
         Vector();
         Vector(double n1, double n2, Mode form= RECT);
@@ -25,8 +27,8 @@ namespace VECTOR{
 		~Vector(){};
         double xval() const {return x;}
         double yval() const { return y;}
-        double magval() const {return mag;}
-        double angval() const {return ang;}
+		double magval() const;
+		double angval() const;
         void polar_mode();
         void rect_mode();
         Vector operator+(const Vector & b) const;
